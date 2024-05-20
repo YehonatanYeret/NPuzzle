@@ -1,11 +1,11 @@
-'''
+"""
 The state is a list of 2 items: the board, the path
 The target is :
 012
 345
 678
 
-'''
+"""
 import random
 import math
 
@@ -39,6 +39,7 @@ def is_target(x):
     return x[0] == list(range(n))
 
 
+#
 # def hdistance(s):
 #     return 0
 

@@ -9,7 +9,7 @@ def create(s):
 
 
 def is_empty(f):
-    return f[0] == None
+    return f[0] is None
 
 
 def insert(f, s):
