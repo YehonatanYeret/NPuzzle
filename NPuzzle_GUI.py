@@ -33,7 +33,7 @@ clock = pygame.time.Clock()
 def draw_board(state):
     # Fill the screen with white and draw the table
     screen.fill(WHITE)
-    pygame.draw.rect(screen, LIGHT_BLUE, (MARGIN, MARGIN, table_width, table_height))
+    pygame.draw.rect(screen, BLUE_GRAY, (MARGIN, MARGIN, table_width, table_height))
 
     for i in range(N):
         for j in range(N):
@@ -47,7 +47,7 @@ def draw_board(state):
 
             else:
                 # Draw the empty cell
-                pygame.draw.rect(screen, BLUE_GRAY, (
+                pygame.draw.rect(screen, LIGHT_BLUE, (
                     MARGIN + j * table_width // N, MARGIN + i * table_height // N, table_width // N,
                     table_height // N))
 
