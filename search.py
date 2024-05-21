@@ -7,7 +7,7 @@ def search(s):
     f = frontier.create(s)
     while not frontier.is_empty(f):
 
-        #print(s)
+        print(s)
         s = frontier.remove(f)
         if state.is_target(s):
             print(s)

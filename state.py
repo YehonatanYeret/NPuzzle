@@ -25,7 +25,7 @@ def get_next(x):
 def create(n):
     s = list(range(n * n))
     m = "<>v^"
-    for i in range(n ** 2):
+    for i in range(n ** 3):
         if_legal(s, m[random.randrange(4)])
     return [s, ""]
 
