@@ -4,9 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b7fe3483-900a-423d-807f-435e5936f7ff" name="Changes" comment="write all the GUI include moving option">
+    <list default="true" id="b7fe3483-900a-423d-807f-435e5936f7ff" name="Changes" comment="add color to the grid">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/NPuzzle_GUI.py" beforeDir="false" afterPath="$PROJECT_DIR$/NPuzzle_GUI.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/state.py" beforeDir="false" afterPath="$PROJECT_DIR$/state.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -134,7 +135,15 @@
       <option name="project" value="LOCAL‎" />
       <updated>1716244994977</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL‎-00005" summary="add color to the grid">
+      <option name="closed" value="true" />
+      <created>1716279402873</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL‎-00005" />
+      <option name="project" value="LOCAL‎" />
+      <updated>1716279402874</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -153,6 +162,7 @@
     <MESSAGE value="create frontier" />
     <MESSAGE value="create all the file" />
     <MESSAGE value="write all the GUI include moving option" />
-    <option name="LAST_COMMIT_MESSAGE" value="write all the GUI include moving option" />
+    <MESSAGE value="add color to the grid" />
+    <option name="LAST_COMMIT_MESSAGE" value="add color to the grid" />
   </component>
 </project>

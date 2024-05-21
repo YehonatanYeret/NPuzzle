@@ -83,11 +83,52 @@ def solve_puzzle(moves, state):
 
     for move in moves:
         print(move)
+        # move_empty_cell(state[0], move)
         st.if_legal(state[0], move)
         draw_board(state)
 
     draw_solve_button()
     draw_board(state)
+
+
+# # Move the empty cell
+# def move_empty_cell(state, direction):
+#
+#     index = state.index(0)
+#     direction = [0, 0]
+#
+#     if direction == "v":
+#         st.if_legal(state, "v")
+#         direction[1] = 1
+#     elif direction == "^":
+#         st.if_legal(state, "^")
+#         direction[1] = -1
+#     elif direction == "<":
+#         st.if_legal(state, "<")
+#         direction[0] = -1
+#     elif direction == ">":
+#         st.if_legal(state, ">")
+#         direction[0] = 1
+#
+#     new_index = state.index(0)
+#
+#     # Draw the empty cell
+#     pygame.draw.rect(screen, BLUE_GRAY, (
+#         MARGIN + new_index % N * table_width // N, MARGIN + new_index // N * table_height // N, table_width // N,
+#         table_height // N))
+#
+#     # Draw the move of the cell
+#     for i in range(100):
+#
+#         pygame.draw.rect(screen, LIGHT_BLUE, (
+#             MARGIN + index % N * table_width // N + (i * (table_width // N) // 100) * direction[0],
+#             MARGIN + index // N * table_height // N + (i * (table_height // N) // 100) * direction[1], table_width // N,
+#             table_height // N))
+#
+#         pygame.display.update(0, 0, WINDOW_WIDTH, WINDOW_HEIGHT)
+#         clock.tick(120)
+
+
 
 
 # Main function
