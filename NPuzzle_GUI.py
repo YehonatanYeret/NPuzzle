@@ -5,7 +5,7 @@ import pygame
 pygame.init()
 
 # Constants
-N = 3
+N = 4
 WINDOW_WIDTH = N * 100
 WINDOW_HEIGHT = N * 100
 MARGIN = N * 10
@@ -15,7 +15,8 @@ table_height = WINDOW_HEIGHT - 2 * MARGIN
 FPS = 3
 WHITE = (255, 255, 255)
 BLACK = (0, 0, 0)
-LIGHT_BLUE = (173, 216, 230)
+LIGHT_BLUE = (240, 247, 250)
+BLUE_GRAY = (213, 227, 232)
 BLUE = (104, 185, 222)
 LIGHT_RED = (179, 64, 76)
 
@@ -30,27 +31,38 @@ clock = pygame.time.Clock()
 
 # Draw the board
 def draw_board(state):
+    # Fill the screen with white and draw the table
     screen.fill(WHITE)
-    pygame.draw.rect(screen, BLACK, (MARGIN, MARGIN, table_width, table_height), N)
+    pygame.draw.rect(screen, LIGHT_BLUE, (MARGIN, MARGIN, table_width, table_height))
+
     for i in range(N):
         for j in range(N):
-            # Draw the grid which is a table of N x N with Margin
-            pygame.draw.rect(screen, BLACK, (
-                MARGIN + j * table_width // N, MARGIN + i * table_height // N, table_width // N, table_height // N), 1)
-
             # Draw the numbers if they are not 0
             if state[0][i * N + j] != 0:
+
+                # Draw the numbers
                 text = FONT.render(str(state[0][i * N + j]), True, LIGHT_RED)
                 screen.blit(text, (MARGIN + j * table_width // N + table_width // N // 2 - text.get_width() // 2,
                                    MARGIN + i * table_height // N + table_height // N // 2 - text.get_height() // 2))
 
+            else:
+                # Draw the empty cell
+                pygame.draw.rect(screen, BLUE_GRAY, (
+                    MARGIN + j * table_width // N, MARGIN + i * table_height // N, table_width // N,
+                    table_height // N))
+
+            # Draw the grid which is a table of N x N with Margin
+            pygame.draw.rect(screen, BLACK, (
+                MARGIN + j * table_width // N, MARGIN + i * table_height // N, table_width // N, table_height // N), 1)
+
+    pygame.draw.rect(screen, BLACK, (MARGIN, MARGIN, table_width, table_height), N)
     pygame.display.update(0, 0, WINDOW_WIDTH, WINDOW_HEIGHT)
     clock.tick(FPS)
 
 
 # Draw the solve button
 def draw_solve_button():
-    pygame.draw.rect(screen, LIGHT_BLUE, (MARGIN, WINDOW_HEIGHT + 20, table_width, 50))
+    pygame.draw.rect(screen, BLUE_GRAY, (MARGIN, WINDOW_HEIGHT + 20, table_width, 50), 0, 10)
     text = FONT.render("Solve", True, BLACK)
     screen.blit(text, (MARGIN + table_width // 2 - text.get_width() // 2, WINDOW_HEIGHT + 45 - text.get_height() // 2))
     pygame.display.flip()
@@ -58,10 +70,24 @@ def draw_solve_button():
 
 # Solve the puzzle
 def solve_puzzle(moves, state):
+
+    # Write "Solving..." on the screen
+    # Show that we are in solution
+    text = FONT.render("Solving...", True, BLACK)
+
+    draw_board(state)
+    pygame.display.flip()
+
+    screen.blit(text, (MARGIN + table_width // 2 - text.get_width() // 2, WINDOW_HEIGHT + 45 - text.get_height() // 2))
+    pygame.display.flip()
+
     for move in moves:
         print(move)
         st.if_legal(state[0], move)
         draw_board(state)
+
+    draw_solve_button()
+    draw_board(state)
 
 
 # Main function
