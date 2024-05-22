@@ -78,13 +78,12 @@ def draw_board(state, pieces):
             if state[0][i * N + j] != 0:
 
                 # Draw the numbers
-                # text = NUM_NUM_FONT.render(str(state[0][i * N + j]), True, LIGHT_RED)
-                # screen.blit(text, (MARGIN + j * table_width // N + table_width // N // 2 - text.get_width() // 2,
-                #                    MARGIN + i * table_height // N + table_height // N // 2 - text.get_height() // 2))
-                # screen.blit(pieces[i * N + j], (MARGIN + j * table_width // N, MARGIN + i * table_height // N))
-
-                screen.blit(pieces[state[0][i * N + j]],
-                            (MARGIN + j * table_width // N, MARGIN + i * table_height // N))
+                text = NUM_FONT.render(str(state[0][i * N + j]), True, LIGHT_RED)
+                screen.blit(text, (MARGIN + j * table_width // N + table_width // N // 2 - text.get_width() // 2,
+                                   MARGIN + i * table_height // N + table_height // N // 2 - text.get_height() // 2))
+               
+                # screen.blit(pieces[state[0][i * N + j]],
+                #             (MARGIN + j * table_width // N, MARGIN + i * table_height // N))
 
             else:
                 # Draw the empty cell
