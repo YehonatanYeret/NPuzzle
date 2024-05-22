@@ -111,15 +111,18 @@ def draw_board(state, pieces):
 def draw_solve_button():
     pygame.draw.rect(screen, BLUE_GRAY, (MARGIN, WINDOW_HEIGHT + 20, table_width // 2 - N, 50), 0, 10)
     text = BT_FONT.render("Solve", True, BLACK)
-    screen.blit(text, (MARGIN + (table_width // 2 - N) // 2 - text.get_width() // 2, WINDOW_HEIGHT + 45 - text.get_height() // 2))
+    screen.blit(text, (
+        MARGIN + (table_width // 2 - N) // 2 - text.get_width() // 2, WINDOW_HEIGHT + 45 - text.get_height() // 2))
     pygame.display.flip()
 
 
 # Draw the solve button
 def draw_choose_img_button():
-    pygame.draw.rect(screen, BLUE_GRAY, (MARGIN + table_width // 2, WINDOW_HEIGHT + 20, table_width // 2 - N, 50), 0, 10)
+    pygame.draw.rect(screen, BLUE_GRAY, (MARGIN + table_width // 2, WINDOW_HEIGHT + 20, table_width // 2 - N, 50), 0,
+                     10)
     text = BT_FONT.render("Choose image", True, BLACK)
-    screen.blit(text, (MARGIN + table_width // 2 + (table_width // 2 - N) // 2 - text.get_width() // 2, WINDOW_HEIGHT + 45 - text.get_height() // 2))
+    screen.blit(text, (MARGIN + table_width // 2 + (table_width // 2 - N) // 2 - text.get_width() // 2,
+                       WINDOW_HEIGHT + 45 - text.get_height() // 2))
     pygame.display.flip()
 
 
@@ -152,6 +155,7 @@ def solve_puzzle(moves, state, pieces):
 def drawing(state, pieces):
     draw_solve_button()
     draw_choose_img_button()
+    draw_board(state, pieces)
 
 
 # Main function
@@ -159,7 +163,6 @@ def main():
     state = st.create(N)
     image = Image.open("img_heart.png")
     pieces = slice_image(image)
-    draw_board(state, pieces)
     drawing(state, pieces)
 
     while True:
@@ -207,7 +210,8 @@ def main():
                     state[1] = ""
 
                 # if the choose image button is clicked
-                elif MARGIN +  table_width // 2 + N <= x <= MARGIN + table_width - N and WINDOW_HEIGHT + 20 < y <= WINDOW_HEIGHT + 80:
+                elif (MARGIN + table_width // 2 + N <= x <= MARGIN + table_width - N
+                      and WINDOW_HEIGHT + 20 <= y <= WINDOW_HEIGHT + 80):
                     # Choose the image
                     image = Image.open(choose_image())
                     pieces = slice_image(image)
