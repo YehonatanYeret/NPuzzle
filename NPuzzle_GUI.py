@@ -2,6 +2,9 @@ import search
 import state as st
 import pygame
 from arcade import sound as arcade
+from PIL import Image
+import tkinter as tk
+from tkinter import filedialog
 
 pygame.init()
 
@@ -21,7 +24,8 @@ BLUE_GRAY = (213, 227, 232)
 BLUE = (104, 185, 222)
 LIGHT_RED = (179, 64, 76)
 
-FONT = pygame.font.Font(None, 40)
+NUM_FONT = pygame.font.Font(None, 40)
+BT_FONT = pygame.font.Font(None, 20)
 
 # Initialize the pygame
 screen = pygame.display.set_mode((WINDOW_WIDTH, WINDOW_HEIGHT + 100))
@@ -30,8 +34,40 @@ pygame.display.set_caption("N-Puzzle")
 clock = pygame.time.Clock()
 
 
+# Function to convert PIL Image to Pygame Surface
+def pil_to_surface(pil_image):
+    mode = pil_image.mode
+    size = pil_image.size
+    data = pil_image.tobytes()
+
+    return pygame.image.fromstring(data, size, mode)
+
+
+# Slice the image into N x N pieces
+def slice_image(image):
+    width, height = image.size
+    target_width = table_width // N
+    target_height = table_height // N
+    pieces = []
+    for i in range(N):
+        for j in range(N):
+            box = (j * width // N, i * height // N, (j + 1) * width // N, (i + 1) * height // N)
+            piece = image.crop(box).resize((target_width, target_height), Image.Resampling.LANCZOS)
+            pieces.append(pil_to_surface(piece))
+    return pieces
+
+
+# Choose the image
+def choose_image():
+    root = tk.Tk()
+    # Hide the main tkinter window
+    root.withdraw()
+    file_path = filedialog.askopenfilename()
+    return file_path
+
+
 # Draw the board
-def draw_board(state):
+def draw_board(state, pieces):
     # Fill the screen with white and draw the table
     screen.fill(WHITE)
     pygame.draw.rect(screen, BLUE_GRAY, (MARGIN, MARGIN, table_width, table_height))
@@ -42,9 +78,13 @@ def draw_board(state):
             if state[0][i * N + j] != 0:
 
                 # Draw the numbers
-                text = FONT.render(str(state[0][i * N + j]), True, LIGHT_RED)
-                screen.blit(text, (MARGIN + j * table_width // N + table_width // N // 2 - text.get_width() // 2,
-                                   MARGIN + i * table_height // N + table_height // N // 2 - text.get_height() // 2))
+                # text = NUM_NUM_FONT.render(str(state[0][i * N + j]), True, LIGHT_RED)
+                # screen.blit(text, (MARGIN + j * table_width // N + table_width // N // 2 - text.get_width() // 2,
+                #                    MARGIN + i * table_height // N + table_height // N // 2 - text.get_height() // 2))
+                # screen.blit(pieces[i * N + j], (MARGIN + j * table_width // N, MARGIN + i * table_height // N))
+
+                screen.blit(pieces[state[0][i * N + j]],
+                            (MARGIN + j * table_width // N, MARGIN + i * table_height // N))
 
             else:
                 # Draw the empty cell
@@ -53,29 +93,43 @@ def draw_board(state):
                     table_height // N))
 
             # Draw the grid which is a table of N x N with Margin
+
             pygame.draw.rect(screen, BLACK, (
                 MARGIN + j * table_width // N, MARGIN + i * table_height // N, table_width // N, table_height // N), 1)
 
-    pygame.draw.rect(screen, BLACK, (MARGIN, MARGIN, table_width, table_height), N)
+    # if the state is the target state, color the board with light red
+    color = BLACK
+    if st.is_target(state):
+        color = LIGHT_RED
+
+    pygame.draw.rect(screen, color, (MARGIN, MARGIN, table_width, table_height), N)
     pygame.display.update(0, 0, WINDOW_WIDTH, WINDOW_HEIGHT)
     clock.tick(FPS)
 
 
 # Draw the solve button
 def draw_solve_button():
-    pygame.draw.rect(screen, BLUE_GRAY, (MARGIN, WINDOW_HEIGHT + 20, table_width, 50), 0, 10)
-    text = FONT.render("Solve", True, BLACK)
-    screen.blit(text, (MARGIN + table_width // 2 - text.get_width() // 2, WINDOW_HEIGHT + 45 - text.get_height() // 2))
+    pygame.draw.rect(screen, BLUE_GRAY, (MARGIN, WINDOW_HEIGHT + 20, table_width // 2 - N, 50), 0, 10)
+    text = BT_FONT.render("Solve", True, BLACK)
+    screen.blit(text, (MARGIN + (table_width // 2 - N) // 2 - text.get_width() // 2, WINDOW_HEIGHT + 45 - text.get_height() // 2))
+    pygame.display.flip()
+
+
+# Draw the solve button
+def draw_choose_img_button():
+    pygame.draw.rect(screen, BLUE_GRAY, (MARGIN + table_width // 2, WINDOW_HEIGHT + 20, table_width // 2 - N, 50), 0, 10)
+    text = BT_FONT.render("Choose image", True, BLACK)
+    screen.blit(text, (MARGIN + table_width // 2 + (table_width // 2 - N) // 2 - text.get_width() // 2, WINDOW_HEIGHT + 45 - text.get_height() // 2))
     pygame.display.flip()
 
 
 # Solve the puzzle
-def solve_puzzle(moves, state):
+def solve_puzzle(moves, state, pieces):
     # Write "Solving..." on the screen
     # Show that we are in solution
-    text = FONT.render("Solving...", True, BLACK)
+    text = NUM_FONT.render("Solving...", True, BLACK)
 
-    draw_board(state)
+    draw_board(state, pieces)
     pygame.display.flip()
 
     screen.blit(text, (MARGIN + table_width // 2 - text.get_width() // 2, WINDOW_HEIGHT + 45 - text.get_height() // 2))
@@ -89,17 +143,24 @@ def solve_puzzle(moves, state):
         # Make sound when the cell is moving
         sound = arcade.Sound("moving_box_sound.wav", True)
         arcade.Sound.play(sound, 0.1, 0, False, 2)
-        draw_board(state)
+        draw_board(state, pieces)
 
+    drawing(state, pieces)
+
+
+# Draw buttons and the board
+def drawing(state, pieces):
     draw_solve_button()
-    draw_board(state)
+    draw_choose_img_button()
 
 
 # Main function
 def main():
     state = st.create(N)
-    draw_board(state)
-    draw_solve_button()
+    image = Image.open("img_heart.png")
+    pieces = slice_image(image)
+    draw_board(state, pieces)
+    drawing(state, pieces)
 
     while True:
         # Go through all the events (for any click or key press)
@@ -131,19 +192,26 @@ def main():
                     arcade.Sound.play(sound, 0.1, 0, False, 2)
 
                 # Draw the board after any movement
-                draw_board(state)
+                draw_board(state, pieces)
 
             # Check if the mouse is clicked
             if event.type == pygame.MOUSEBUTTONDOWN:
                 x, y = pygame.mouse.get_pos()
 
                 # if the solve button is clicked
-                if MARGIN <= x <= MARGIN + table_width and WINDOW_HEIGHT + 20 <= y <= WINDOW_HEIGHT + 80:
+                if MARGIN + N <= x <= MARGIN + table_width // 2 - N and WINDOW_HEIGHT + 20 <= y < WINDOW_HEIGHT + 80:
                     # Solve the puzzle
                     solution = state.copy()
                     state = search.search(state)
-                    solve_puzzle(state[1], solution)
+                    solve_puzzle(state[1], solution, pieces)
                     state[1] = ""
+
+                # if the choose image button is clicked
+                elif MARGIN +  table_width // 2 + N <= x <= MARGIN + table_width - N and WINDOW_HEIGHT + 20 < y <= WINDOW_HEIGHT + 80:
+                    # Choose the image
+                    image = Image.open(choose_image())
+                    pieces = slice_image(image)
+                    draw_board(state, pieces)
 
                 # if the board is clicked
                 elif MARGIN <= x <= MARGIN + table_width and MARGIN <= y <= MARGIN + table_height:
@@ -153,19 +221,19 @@ def main():
                     index = y * N + x
 
                     # Get the way to move the cell
-                    if index-state[0].index(0) == 1:
+                    if index - state[0].index(0) == 1:
                         st.if_legal(state[0], ">")
-                    elif index-state[0].index(0) == -1:
+                    elif index - state[0].index(0) == -1:
                         st.if_legal(state[0], "<")
-                    elif index-state[0].index(0) == N:
+                    elif index - state[0].index(0) == N:
                         st.if_legal(state[0], "v")
-                    elif index-state[0].index(0) == -N:
+                    elif index - state[0].index(0) == -N:
                         st.if_legal(state[0], "^")
 
                     # Make sound when the user moves the cell
                     sound = arcade.Sound("moving_box_sound.wav", True)
                     arcade.Sound.play(sound, 0.1, 0, False, 2)
-                    draw_board(state)
+                    draw_board(state, pieces)
 
 
 if __name__ == "__main__":

@@ -4,9 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b7fe3483-900a-423d-807f-435e5936f7ff" name="Changes" comment="color update">
-      <change beforePath="$PROJECT_DIR$/search.py" beforeDir="false" afterPath="$PROJECT_DIR$/search.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/state.py" beforeDir="false" afterPath="$PROJECT_DIR$/state.py" afterDir="false" />
+    <list default="true" id="b7fe3483-900a-423d-807f-435e5936f7ff" name="Changes" comment="Sound when the cell is moving and the option to move the cell with the mouse">
+      <change afterPath="$PROJECT_DIR$/img_heart.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/NPuzzle_GUI.py" beforeDir="false" afterPath="$PROJECT_DIR$/NPuzzle_GUI.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -49,10 +50,14 @@
     &quot;Python.NPuzzle_GUI.executor&quot;: &quot;Run&quot;,
     &quot;Python.search.executor&quot;: &quot;Run&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;master&quot;
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/1/PycharmProjects/NPuzzle&quot;
   }
 }</component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\1\PycharmProjects\NPuzzle" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\1\PycharmProjects\NPuzzle" />
     </key>
@@ -158,7 +163,15 @@
       <option name="project" value="LOCAL‎" />
       <updated>1716287619152</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL‎-00008" summary="Sound when the cell is moving and the option to move the cell with the mouse">
+      <option name="closed" value="true" />
+      <created>1716289027347</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL‎-00008" />
+      <option name="project" value="LOCAL‎" />
+      <updated>1716289027348</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -180,6 +193,7 @@
     <MESSAGE value="add color to the grid" />
     <MESSAGE value="some fix" />
     <MESSAGE value="color update" />
-    <option name="LAST_COMMIT_MESSAGE" value="color update" />
+    <MESSAGE value="Sound when the cell is moving and the option to move the cell with the mouse" />
+    <option name="LAST_COMMIT_MESSAGE" value="Sound when the cell is moving and the option to move the cell with the mouse" />
   </component>
 </project>
