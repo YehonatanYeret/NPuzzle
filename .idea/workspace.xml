@@ -4,10 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b7fe3483-900a-423d-807f-435e5936f7ff" name="Changes" comment="refactor the code for more readable">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/NPuzzle_GUI.py" beforeDir="false" afterPath="$PROJECT_DIR$/NPuzzle_GUI.py" afterDir="false" />
-    </list>
+    <list default="true" id="b7fe3483-900a-423d-807f-435e5936f7ff" name="Changes" comment="option for img better" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -187,7 +184,15 @@
       <option name="project" value="LOCAL‎" />
       <updated>1716376883996</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL‎-00011" summary="option for img better">
+      <option name="closed" value="true" />
+      <created>1716395008606</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL‎-00011" />
+      <option name="project" value="LOCAL‎" />
+      <updated>1716395008606</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -212,6 +217,7 @@
     <MESSAGE value="Sound when the cell is moving and the option to move the cell with the mouse" />
     <MESSAGE value="add option to choose an img for the puzzle" />
     <MESSAGE value="refactor the code for more readable" />
-    <option name="LAST_COMMIT_MESSAGE" value="refactor the code for more readable" />
+    <MESSAGE value="option for img better" />
+    <option name="LAST_COMMIT_MESSAGE" value="option for img better" />
   </component>
 </project>
