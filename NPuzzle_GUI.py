@@ -15,6 +15,7 @@ WINDOW_HEIGHT = N * 100
 MARGIN = N * 10
 table_width = WINDOW_WIDTH - 2 * MARGIN
 table_height = WINDOW_HEIGHT - 2 * MARGIN
+IS_PICTURE = False
 
 FPS = 3
 WHITE = (255, 255, 255)
@@ -77,13 +78,16 @@ def draw_board(state, pieces):
             # Draw the numbers if they are not 0
             if state[0][i * N + j] != 0:
 
-                # Draw the numbers
-                text = NUM_FONT.render(str(state[0][i * N + j]), True, LIGHT_RED)
-                screen.blit(text, (MARGIN + j * table_width // N + table_width // N // 2 - text.get_width() // 2,
-                                   MARGIN + i * table_height // N + table_height // N // 2 - text.get_height() // 2))
-               
-                # screen.blit(pieces[state[0][i * N + j]],
-                #             (MARGIN + j * table_width // N, MARGIN + i * table_height // N))
+                if not IS_PICTURE:
+                    # Draw the numbers
+                    text = NUM_FONT.render(str(state[0][i * N + j]), True, LIGHT_RED)
+                    screen.blit(text, (MARGIN + j * table_width // N + table_width // N // 2 - text.get_width() // 2,
+                                       MARGIN + i * table_height // N + table_height // N // 2 - text.get_height() // 2))
+
+                else:
+                    # Draw the image
+                    screen.blit(pieces[state[0][i * N + j]],
+                                (MARGIN + j * table_width // N, MARGIN + i * table_height // N))
 
             else:
                 # Draw the empty cell
@@ -159,9 +163,9 @@ def drawing(state, pieces):
 
 # Main function
 def main():
+    global IS_PICTURE
     state = st.create(N)
-    image = Image.open("img_heart.png")
-    pieces = slice_image(image)
+    pieces = []
     drawing(state, pieces)
 
     while True:
@@ -213,6 +217,8 @@ def main():
                       and WINDOW_HEIGHT + 20 <= y <= WINDOW_HEIGHT + 80):
                     # Choose the image
                     image = Image.open(choose_image())
+                    if image:
+                        IS_PICTURE = True
                     pieces = slice_image(image)
                     draw_board(state, pieces)
 
