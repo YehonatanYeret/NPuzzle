@@ -1,10 +1,12 @@
-import search
-import state as st
-import pygame
-from arcade import sound as arcade
-from PIL import Image
 import tkinter as tk
 from tkinter import filedialog
+
+import pygame
+from PIL import Image
+from arcade import sound as arcade
+
+import search
+import state as st
 
 pygame.init()
 
@@ -27,6 +29,7 @@ LIGHT_RED = (179, 64, 76)
 
 NUM_FONT = pygame.font.Font(None, 40)
 BT_FONT = pygame.font.Font(None, 20)
+HELP_NUM_FONT = pygame.font.Font(None, 20)
 
 # Initialize the pygame
 screen = pygame.display.set_mode((WINDOW_WIDTH, WINDOW_HEIGHT + 100))
@@ -88,6 +91,10 @@ def draw_board(state, pieces):
                     # Draw the image
                     screen.blit(pieces[state[0][i * N + j]],
                                 (MARGIN + j * table_width // N, MARGIN + i * table_height // N))
+
+                    # Draw the number at the corner of the image
+                    text = HELP_NUM_FONT.render(str(state[0][i * N + j]), True, BLACK)
+                    screen.blit(text, (MARGIN + j * table_width // N + N, MARGIN + i * table_height // N + N))
 
             else:
                 # Draw the empty cell
