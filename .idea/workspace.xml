@@ -4,11 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b7fe3483-900a-423d-807f-435e5936f7ff" name="Changes" comment="add numbers at the corner of each piece">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/NPuzzle_GUI.py" beforeDir="false" afterPath="$PROJECT_DIR$/NPuzzle_GUI.py" afterDir="false" />
+    <list default="true" id="b7fe3483-900a-423d-807f-435e5936f7ff" name="Changes" comment="change from BFS to A*">
       <change beforePath="$PROJECT_DIR$/frontier.py" beforeDir="false" afterPath="$PROJECT_DIR$/frontier.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/search.py" beforeDir="false" afterPath="$PROJECT_DIR$/search.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/state.py" beforeDir="false" afterPath="$PROJECT_DIR$/state.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -225,7 +222,15 @@
       <option name="project" value="LOCAL‎" />
       <updated>1716561332106</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL‎-00015" summary="change from BFS to A*">
+      <option name="closed" value="true" />
+      <created>1716826656014</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL‎-00015" />
+      <option name="project" value="LOCAL‎" />
+      <updated>1716826656014</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -255,7 +260,8 @@
     <MESSAGE value="option for img better" />
     <MESSAGE value="at start the display is the numbers, but after choosing an img the grid shows an img" />
     <MESSAGE value="add numbers at the corner of each piece" />
-    <option name="LAST_COMMIT_MESSAGE" value="add numbers at the corner of each piece" />
+    <MESSAGE value="change from BFS to A*" />
+    <option name="LAST_COMMIT_MESSAGE" value="change from BFS to A*" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
   <component name="XDebuggerManager">
@@ -263,7 +269,7 @@
       <breakpoints>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/NPuzzle_GUI.py</url>
-          <line>219</line>
+          <line>220</line>
           <option name="timeStamp" value="1" />
         </line-breakpoint>
       </breakpoints>

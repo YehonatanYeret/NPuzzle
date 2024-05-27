@@ -1,11 +1,3 @@
-'''
-The state is a list of 2 items: the board, the path
-The target for 8-puzzle is: (zero is the hole)
-012
-345
-678
-'''
-
 import math
 import random
 
@@ -60,7 +52,7 @@ def if_legal(x, m):  # gets a board and a move and makes the move if it's legal
         x[z + n] = 0
 
 
-def hdistance(s):
+def h_distance(s):
     c = 0
     for i in range(1, len(s[0])):
         if s[0].index(i) != i:

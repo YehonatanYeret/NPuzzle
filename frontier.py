@@ -12,11 +12,11 @@ def is_empty(f):
 
 
 def val(s):
-    return state.hdistance(s) + state.path_len(s)
+    return state.h_distance(s) + state.path_len(s)
 
 
 # Uniform Cost: return state.path_len(s)
-# Greedy Best First: return state.hdistance(s)
+# Greedy Best First: return state.h_distance(s)
 
 def insert(h, s):
     # inserts state s to the frontier
@@ -47,13 +47,13 @@ def remove(h):
 
 
 def heapify(f, i):
-    minSon = i
-    if 2 * i + 1 < len(f) and val(f[2 * i + 1]) < val(f[minSon]):
-        minSon = 2 * i + 1
-    if 2 * i + 2 < len(f) and val(f[2 * i + 2]) < val(f[minSon]):
-        minSon = 2 * i + 2
-    if minSon != i:
-        t = f[minSon]
-        f[minSon] = f[i]
+    min_son = i
+    if 2 * i + 1 < len(f) and val(f[2 * i + 1]) < val(f[min_son]):
+        min_son = 2 * i + 1
+    if 2 * i + 2 < len(f) and val(f[2 * i + 2]) < val(f[min_son]):
+        min_son = 2 * i + 2
+    if min_son != i:
+        t = f[min_son]
+        f[min_son] = f[i]
         f[i] = t
-        heapify(f, minSon)
+        heapify(f, min_son)
