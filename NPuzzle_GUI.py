@@ -11,7 +11,7 @@ import state as st
 pygame.init()
 
 # Constants
-N = 3
+N = 4
 WINDOW_WIDTH = N * 100
 WINDOW_HEIGHT = N * 100
 MARGIN = N * 10
@@ -215,9 +215,12 @@ def main():
                 if MARGIN + N <= x <= MARGIN + table_width // 2 - N and WINDOW_HEIGHT + 20 <= y < WINDOW_HEIGHT + 80:
                     # Solve the puzzle
                     solution = state.copy()
-                    state = search.search(state)
+                    all_state = search.search(state)
+                    state = all_state[0]
                     solve_puzzle(state[1], solution, pieces)
                     state[1] = ""
+                    print(all_state)
+
 
                 # if the choose image button is clicked
                 elif (MARGIN + table_width // 2 + N <= x <= MARGIN + table_width - N
